@@ -7,9 +7,9 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "test": "jest",
-    "migrate:generate": "typeorm-ts-node-commonjs migration:generate",
-    "migrate:run": "typeorm-ts-node-commonjs migration:run",
-    "migrate:revert": "typeorm-ts-node-commonjs migration:revert"
+    "migrate:generate": "typeorm-ts-node-commonjs migration:generate -d src/config/database.ts",
+    "migrate:run": "typeorm-ts-node-commonjs migration:run -d src/config/database.ts",
+    "migrate:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/database.ts"
   },
   "keywords": [],
   "author": "",
