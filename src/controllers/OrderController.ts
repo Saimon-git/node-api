@@ -34,10 +34,17 @@ export class OrderController {
 
   async getUserOrders(req: Request, res: Response): Promise<void> {
     try {
-      const userId = req.user!.userId;
+      if (!req.user || typeof req.user.userId !== 'number') {
+        console.error('No se encontró userId en req.user:', req.user);
+        res.status(401).json({ message: 'No autorizado: userId no encontrado en el token' });
+        return;
+      }
+      const userId = req.user.userId;
+      console.log('userId extraído del token:', userId);
       const orders = await this.orderService.getUserOrders(userId);
       res.json(orders);
     } catch (error: any) {
+      console.error('Error en getUserOrders:', error);
       res.status(500).json({ message: error.message });
     }
   }

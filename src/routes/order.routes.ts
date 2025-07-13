@@ -14,6 +14,7 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 router.get('/my-orders', async (req: Request, res: Response) => {
+    console.log('req.user:', req.user);
     await orderController.getUserOrders(req, res);
 });
 
